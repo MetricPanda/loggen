@@ -1,7 +1,4 @@
-CFLAGS:=-std=gnu99 -Wall
-
-# Demo flags
-CFLAGS+=-Wno-unused-variable
+CFLAGS:=-std=gnu99 -Wall -Wextra
 
 all: loggen test/demo
 

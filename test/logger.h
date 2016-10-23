@@ -42,19 +42,21 @@ enum
 
 #define Log(Flags, Format, ...) \
 { \
-  int VERBOSE    = LOG_VERBOSE; \
-  int INFO       = LOG_INFO; \
-  int WARN       = LOG_WARN; \
-  int ERROR      = LOG_ERROR; \
-  int FATAL      = LOG_FATAL; \
-  int PLATFORM   = LOG_PLATFORM; \
-  int AUDIO      = LOG_AUDIO; \
-  int VIDEO      = LOG_VIDEO; \
-  int NETWORK    = LOG_NETWORK; \
-  int INIT       = LOG_INIT; \
-  int SHUTDOWN   = LOG_SHUTDOWN; \
-  int ACTIVATE   = LOG_ACTIVATE; \
-  int DEACTIVATE = LOG_DEACTIVATE; \
+  enum { \
+  VERBOSE    = LOG_VERBOSE, \
+  INFO       = LOG_INFO, \
+  WARN       = LOG_WARN, \
+  ERROR      = LOG_ERROR, \
+  FATAL      = LOG_FATAL, \
+  PLATFORM   = LOG_PLATFORM, \
+  AUDIO      = LOG_AUDIO, \
+  VIDEO      = LOG_VIDEO, \
+  NETWORK    = LOG_NETWORK, \
+  INIT       = LOG_INIT, \
+  SHUTDOWN   = LOG_SHUTDOWN, \
+  ACTIVATE   = LOG_ACTIVATE, \
+  DEACTIVATE = LOG_DEACTIVATE, \
+  }; \
   if ((Flags) & GlobalVerbosity) { \
     printf("%s%s%s %12.12s:%4i " Format "\n", \
            LOG_PrioritiesLabel(Flags), LOG_SubsystemsLabel(Flags), LOG_SubcategoriesLabel(Flags), \

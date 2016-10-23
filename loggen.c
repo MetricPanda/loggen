@@ -288,14 +288,16 @@ int GenerateLogger(const char* Prefix, LogGenerationMode Mode, LogGroup* Groups,
     ToUppercase(Uppercase, sizeof(Uppercase), Groups[0].Name);
     W("#define Log(Flags, Format, ...) \\\n");
     W("{ \\\n");
+    W("  enum { \\\n");
     for (int GroupIndex = 0; GroupIndex < GroupCount; ++GroupIndex)
     {
       LogGroup* Group = Groups + GroupIndex;
       for (u32 LabelIndex = 0; LabelIndex < Group->LabelCount; ++LabelIndex)
       {
-        W("  int %-*s = %s%s; \\\n", LongestLabel, Group->Labels[LabelIndex], Prefix, Group->Labels[LabelIndex]);
+        W("  %-*s = %s%s, \\\n", LongestLabel, Group->Labels[LabelIndex], Prefix, Group->Labels[LabelIndex]);
       }
     }
+    W("  }; \\\n");
     if (Mode == LogGenerationMode_BitFlags)
     {
       W("  if ((Flags) & GlobalVerbosity) { \\\n");
